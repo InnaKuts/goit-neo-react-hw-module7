@@ -1,6 +1,5 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { ClipLoader } from "react-spinners";
 import toast from "react-hot-toast";
 import { fetchContacts } from "./redux/contactsOps";
 import { selectLoading, selectError } from "./redux/contactsSlice";
@@ -8,6 +7,7 @@ import "./App.css";
 import ContactList from "./components/ContactList/ContactList";
 import SearchBox from "./components/SearchBox/SearchBox";
 import ContactForm from "./components/ContactForm/ContactForm";
+import Loader from "./components/Loader/Loader";
 
 function App() {
   const dispatch = useDispatch();
@@ -31,17 +31,7 @@ function App() {
           <h1>Phonebook</h1>
           <ContactForm />
           <SearchBox />
-          {loading && (
-            <div
-              style={{
-                display: "flex",
-                justifyContent: "center",
-                margin: "20px",
-              }}
-            >
-              <ClipLoader color="#007bff" size={35} />
-            </div>
-          )}
+          {loading && <Loader />}
           <ContactList />
         </div>
       </div>
